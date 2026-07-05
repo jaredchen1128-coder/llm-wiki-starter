@@ -1,114 +1,116 @@
 # LLM Wiki / AI Knowledge Base Starter
 
-一个面向普通知识工作者的个人知识库模板。它把 Karpathy 风格的 LLM Wiki 思路落成一个可复制的 Markdown/Obsidian 目录：
+Languages: [English](README.md) | [中文](README.zh-CN.md)
 
-- `RAW` 保存原始资料。
-- `WIKI` 保存整理后的知识。
-- `SCHEMA` 保存 Agent 需要遵守的规则、模板和检查脚本。
+A Markdown-first starter template for building an AI-assisted personal knowledge base.
 
-第一版不追求全自动。推荐方式是：先用 `RAW/INBOX` 收集资料，再让 Agent 按 `SCHEMA` 规则整理入库。
+It turns the Karpathy-style LLM Wiki idea into a practical folder structure that works with Obsidian, Cursor, Claude Code, Codex, VS Code, or any local-file-aware Agent.
 
-## 快速开始
+- `RAW` keeps original source material.
+- `WIKI` stores distilled and connected knowledge.
+- `SCHEMA` defines the rules, templates, and audit scripts your Agent should follow.
 
-1. 复制这个仓库。
-2. 把文章、截图、网页剪藏、笔记等放进 `RAW/INBOX/`。
-3. 对你的 Agent 说：
+This is intentionally not fully automated in v1. The recommended workflow is: collect first, then ask an Agent to ingest and update the Wiki.
+
+## Quickstart
+
+1. Copy this repository.
+2. Put articles, screenshots, web clippings, notes, transcripts, or ideas into `RAW/INBOX/`.
+3. Ask your Agent:
 
 ```text
-我新增了资料，帮我扫描并入库
+I added new material. Please scan and ingest it into the knowledge base.
 ```
 
-4. Agent 应读取 `SCHEMA/agent.md`、`SCHEMA/knowledge-iteration-protocol.md` 和 `SCHEMA/knowledge-use-protocol.md`，再更新 `WIKI`。
-5. 定期运行只读检查：
+4. The Agent should read `SCHEMA/agent.md`, `SCHEMA/knowledge-iteration-protocol.md`, and `SCHEMA/knowledge-use-protocol.md`, then update `WIKI`.
+5. Run the read-only audit regularly:
 
 ```bash
 bash SCHEMA/scripts/audit-knowledge-base.sh
 ```
 
-更多步骤见 [Quickstart](docs/quickstart.md)。
+See [Quickstart](docs/quickstart.md) for the full setup guide.
 
-常用 Agent 触发语见 [Agent Prompts](docs/agent-prompts.md)。
+See [Agent Prompts](docs/agent-prompts.md) for reusable prompts.
 
-## 目录结构
+## Folder Structure
 
 ```text
 RAW/
-  INBOX/                临时收集入口
+  INBOX/                temporary capture inbox
 SCHEMA/
-  agent.md             Agent 总规则
+  agent.md             main Agent rules
   knowledge-iteration-protocol.md
   knowledge-use-protocol.md
-  templates/           页面模板
-  scripts/             只读检查脚本
+  templates/           page templates
+  scripts/             read-only audit script
 WIKI/
-  index.md             知识库索引
-  ingest-register.md   RAW 资料处理台账
-  log.md               操作日志
-  topics/              主题页
-  concepts/            概念页
-  sources/             来源整理页
-  questions/           长期问题
-  decisions/           决策记录
-  reviews/             周期复盘和语义 Lint
-  archive/             归档内容
+  index.md             knowledge base index
+  ingest-register.md   RAW processing register
+  log.md               operation log
+  topics/              topic pages
+  concepts/            concept pages
+  sources/             source distillation pages
+  questions/           long-running questions
+  decisions/           decision records
+  reviews/             reviews and semantic lint results
+  archive/             archived knowledge
 examples/
-  fictional/           虚构示例，不是你的真实知识
+  fictional/           fictional example, not real personal data
 ```
 
-## 核心原则
+## Core Principles
 
-- 收藏时不要急着分类，先放 `RAW/INBOX`。
-- `RAW` 不改写，`WIKI` 可迭代，`SCHEMA` 定规则。
-- 新资料进入时，不只写摘要，还要更新已有主题、概念、问题或决策。
-- `相关页面` 必须写关系说明，不要只放裸链接。
-- Query 后要判断是否回写，避免知识库只收藏不用。
-- 自动化先做只读检查，再逐步考虑写入动作。
+- Capture first, organize later.
+- Keep `RAW` unchanged; let `WIKI` evolve.
+- Use `SCHEMA` to make Agent behavior explicit and repeatable.
+- Do not only summarize new material; update existing topics, concepts, questions, or decisions.
+- Every related-page link must explain why it is related.
+- After a useful answer, decide whether it should be written back into `WIKI`.
+- Start with read-only automation before allowing write actions.
 
-## 推荐工作流
+## Recommended Workflows
 
 ### Ingest
 
-新资料进入后：
+When new material arrives:
 
-1. 登记到 `WIKI/ingest-register.md`。
-2. 如果有长期价值，创建 `WIKI/sources/` 来源整理页。
-3. 更新相关主题页、概念页、问题页或决策页。
-4. 更新 `WIKI/index.md` 和 `WIKI/log.md`。
+1. Register it in `WIKI/ingest-register.md`.
+2. If it has long-term value, create a source page in `WIKI/sources/`.
+3. Update related topic, concept, question, or decision pages.
+4. Update `WIKI/index.md` and `WIKI/log.md`.
 
 ### Query
 
-提问时：
+When asking questions:
 
-1. 先读 `WIKI/index.md`。
-2. 再读相关 WIKI 页面，必要时追溯到 `RAW`。
-3. 回答后判断是否需要写回。
+1. Start from `WIKI/index.md`.
+2. Read relevant Wiki pages, and trace back to `RAW` when needed.
+3. Answer from the current Wiki understanding.
+4. Decide whether the answer should be written back.
 
 ### Lint
 
-结构检查：
+Run the structural audit:
 
 ```bash
 bash SCHEMA/scripts/audit-knowledge-base.sh
 ```
 
-语义检查：
+Use semantic lint to check:
 
-- 核心结论是否过时。
-- 页面之间是否冲突。
-- 相关页面是否真的相关。
-- 长期问题是否无人处理。
+- whether core conclusions are outdated
+- whether pages contradict each other
+- whether related-page links are truly useful
+- whether long-running questions are unresolved
 
-## 示例
+## Examples
 
-`examples/fictional/` 里有一个虚构示例，用来展示来源页、概念页和主题页的写法。不要把示例当成真实资料。
+`examples/fictional/` contains a fictional mini example showing how source pages, concept pages, and related-page notes can be written.
 
-## 开源说明
+The example is not real personal knowledge.
 
-这个模板不包含任何真实个人资料或第三方平台原文。你可以基于它建立自己的个人知识库，也可以继续改造成 Codex/Claude/其他 Agent 的 Skill。
-
-## 发布前检查
-
-如果你要把自己的版本发布到 GitHub，建议先做一次结构检查和隐私关键词检查。
+## Before Publishing Your Own Version
 
 Before publishing your own version to GitHub, run a structure audit and search for private keywords.
 
@@ -117,10 +119,11 @@ bash SCHEMA/scripts/audit-knowledge-base.sh
 rg -n "your-name|private-email|private-path|private-project" .
 ```
 
-请把上面的关键词替换成你自己的姓名、邮箱、本机路径、公司名、客户名或私密项目名。
-
 Replace the keywords above with your own name, email, local paths, company names, client names, or private project names.
 
-只发布脱敏后的模板，不要把自己的 `RAW` 原始资料直接开源。
-
 Only publish a sanitized template. Do not open-source your personal `RAW` materials directly.
+
+## License
+
+MIT
+

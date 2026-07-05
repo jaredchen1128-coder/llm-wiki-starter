@@ -1,5 +1,7 @@
 # Quickstart
 
+Languages: [English](quickstart.md) | [中文](quickstart.zh-CN.md)
+
 This guide helps you start using the template in about 10 minutes.
 
 ## 1. Copy the Template
@@ -47,12 +49,6 @@ capture first, organize later
 Use this prompt:
 
 ```text
-我新增了资料，帮我扫描并入库
-```
-
-Or in English:
-
-```text
 I added new material. Please scan and ingest it into the knowledge base.
 ```
 
@@ -72,7 +68,7 @@ The Agent should:
 Use prompts like:
 
 ```text
-基于我的知识库，帮我回答这个问题：……
+Answer this question based on my knowledge base: ...
 ```
 
 The Agent should read `WIKI/index.md` first, then follow relevant pages and sources.
@@ -110,4 +106,3 @@ Start with:
 - a few source pages
 
 Add complexity only when the knowledge base starts to grow.
-
