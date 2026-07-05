@@ -41,7 +41,7 @@ raw_files=()
 while IFS= read -r file; do
   name="$(basename "$file")"
   case "$name" in
-    .DS_Store|Thumbs.db|README.md|.gitkeep)
+    .DS_Store|Thumbs.db|README.md|README.zh-CN.md|.gitkeep)
       continue
       ;;
   esac

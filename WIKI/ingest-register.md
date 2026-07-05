@@ -25,6 +25,5 @@ status: active
 
 ## 忽略规则
 
-- `.DS_Store`、`Thumbs.db`、`README.md` 和 `.gitkeep` 不进入台账。
+- `.DS_Store`、`Thumbs.db`、`README.md`、`README.zh-CN.md` 和 `.gitkeep` 不进入台账。
 - 临时文件、重复导出文件和明显无知识价值文件可以标记为 `skipped`。
-

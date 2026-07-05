@@ -94,13 +94,14 @@ status: active
 当用户要求整理新资料时：
 
 1. 读取 `SCHEMA/agent.md` 和 `SCHEMA/knowledge-iteration-protocol.md`。
-2. 扫描 `RAW/INBOX/` 和其他 `RAW` 文件。
+2. 优先扫描 `RAW/INBOX/`，再扫描其他 `RAW` 文件。
 3. 判断资料类型和是否值得入库。
-4. 创建或更新 `WIKI/sources/` 来源整理页。
-5. 更新相关主题页、概念页、问题页或决策页。
-6. 更新 `WIKI/ingest-register.md`。
-7. 更新 `WIKI/index.md`。
-8. 追加 `WIKI/log.md`。
+4. 如果资料来自 `RAW/INBOX/` 且分类明确，可移动到最相关的 `RAW` 分类文件夹。
+5. 创建或更新 `WIKI/sources/` 来源整理页。
+6. 更新相关主题页、概念页、问题页或决策页。
+7. 更新 `WIKI/ingest-register.md`。
+8. 更新 `WIKI/index.md`。
+9. 追加 `WIKI/log.md`。
 
 ## Query 工作流
 
@@ -126,4 +127,3 @@ bash SCHEMA/scripts/audit-knowledge-base.sh
 - 检查页面之间是否冲突。
 - 检查相关页面是否真的相关。
 - 检查长期问题是否无人处理。
-

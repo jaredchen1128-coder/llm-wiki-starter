@@ -13,6 +13,10 @@ status: active
 
 `RAW` 保存原始资料，`WIKI` 保存整理后的知识，`SCHEMA` 保存 Agent 规则。
 
+## New Material Inbox
+
+- `RAW/INBOX`：temporary capture inbox. Put new articles, web clippings, notes, or unclassified material here before asking an Agent to ingest them.
+
 ## 主题
 
 暂无。整理资料时，在 `WIKI/topics/` 创建主题页，并在这里补充链接。
@@ -49,4 +53,3 @@ status: active
 
 - [[log]]：整理、查询、巡检和结构调整记录。
 - [[ingest-register]]：`RAW` 资料入库台账，记录处理状态和对应来源页。
-
