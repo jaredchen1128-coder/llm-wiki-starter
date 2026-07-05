@@ -108,11 +108,19 @@ bash SCHEMA/scripts/audit-knowledge-base.sh
 
 ## 发布前检查
 
-如果你要把自己的版本发布到 GitHub，建议先运行：
+如果你要把自己的版本发布到 GitHub，建议先做一次结构检查和隐私关键词检查。
+
+Before publishing your own version to GitHub, run a structure audit and search for private keywords.
 
 ```bash
 bash SCHEMA/scripts/audit-knowledge-base.sh
-rg -n "替换成你自己的隐私关键词" .
+rg -n "your-name|private-email|private-path|private-project" .
 ```
 
+请把上面的关键词替换成你自己的姓名、邮箱、本机路径、公司名、客户名或私密项目名。
+
+Replace the keywords above with your own name, email, local paths, company names, client names, or private project names.
+
 只发布脱敏后的模板，不要把自己的 `RAW` 原始资料直接开源。
+
+Only publish a sanitized template. Do not open-source your personal `RAW` materials directly.
